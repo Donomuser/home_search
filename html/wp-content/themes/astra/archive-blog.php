@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header(); ?>
 
+aaaaaaaaaaaaaa
+
 <?php if ( astra_page_layout() == 'left-sidebar' ) : ?>
 
 	<?php get_sidebar(); ?>
@@ -25,9 +27,13 @@ get_header(); ?>
 		<?php astra_primary_content_top(); ?>
 
 		<?php astra_archive_header(); ?>
+		<div class="main_content_archivepage">
 
-		<?php astra_content_loop(); ?>
+			<?php astra_content_loop(); ?>
 
+			<?php get_sidebar(); ?>
+
+		</div>
 		<?php astra_pagination(); ?>
 
 		<?php astra_primary_content_bottom(); ?>
@@ -41,3 +47,16 @@ get_header(); ?>
 <?php endif ?>
 
 <?php get_footer(); ?>
+
+<style>
+	.main_content_archivepage{
+		display: flex;
+	}
+	#main{
+		width: auto;
+	}
+	#secondary {
+		margin-left: 10px;
+    width: 24.306%;
+	}
+</style>

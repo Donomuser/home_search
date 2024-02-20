@@ -33,9 +33,24 @@ echo '<div ';
 		if ( is_active_sidebar( $astra_sidebar ) ) :
 				dynamic_sidebar( $astra_sidebar );
 		endif;
-
-		astra_sidebars_after();
 		?>
+		<aside id="custom-post-type-archives-2" class="widget widget_archive">
+			<h2 class="widget-title">タグアーカイブ</h2>
+			<ul>
+			<?php  $terms = get_terms('blog_tag'); 
+				foreach ( $terms as $term ) {
+					echo '<li><a href="'.get_term_link($term).'">'.$term->name.'</a>（'.$term->count.'）</li>'; 
+				}?>
+			</ul>
+		</aside>
+
+		<?php astra_sidebars_after();?>
 
 	</div><!-- .sidebar-main -->
 </div><!-- #secondary -->
+
+<style>
+#secondary{
+	background-color: #ffffff;
+}
+</style>

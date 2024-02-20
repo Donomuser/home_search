@@ -576,9 +576,10 @@ function astra_banner_elements_order( $structure = array() ) {
 				if ( ! empty( $post_meta ) ) {
 					$output_str = astra_get_post_meta( $post_meta, '/', 'single-post' );
 					if ( ! empty( $output_str ) ) {
-						$output = apply_filters( 'astra_single_post_meta', '<div class="entry-meta">' . $output_str . '</div>' ); // WPCS: XSS OK.
+						$output = apply_filters( 'astra_single_post_meta', '<div class="entry-meta">'. $output_str . '</div>' ); // WPCS: XSS OK.
 					}
 				}
+				//シングルページのループフロント処理
 				echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				do_action( 'astra_single_post_banner_meta_after' );
 				break;
