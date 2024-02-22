@@ -25,3 +25,5 @@ services:
       - home_search_data:/var/lib/mysql
 volumes:
   home_search_data:
+
+#wp_pass::vImIJn5ZwI0lV(
