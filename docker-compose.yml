@@ -23,6 +23,24 @@ services:
     restart: always
     volumes:
       - home_search_data:/var/lib/mysql
+<<<<<<< Updated upstream
+=======
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=En2aqskS
+    ports:
+      - 3112:80
+    links:
+      - mysql
+    volumes:
+      - ./phpmyadmin/sessions:/sessions
+
+>>>>>>> Stashed changes
 volumes:
   home_search_data:
 
