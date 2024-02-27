@@ -183,3 +183,20 @@ require_once ASTRA_THEME_DIR . 'inc/core/markup/class-astra-markup.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-filters.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
+
+
+add_filter('register_post_type_args', function($args, $post_type) {
+	if ('post' == $post_type) {
+			global $wp_rewrite;
+			$archive_slug = 'archive'; 
+			$args['label'] = '投稿'; 
+			$args['has_archive'] = $archive_slug;
+			$archive_slug = $wp_rewrite->root.$archive_slug;
+			$feeds = '(' . trim( implode('|', $wp_rewrite->feeds) ) . ')';
+			add_rewrite_rule("{$archive_slug}/?$", "index.php?post_type={$post_type}", 'top');
+			add_rewrite_rule("{$archive_slug}/feed/{$feeds}/?$", "index.php?post_type={$post_type}".'&feed=$matches[1]', 'top');
+			add_rewrite_rule("{$archive_slug}/{$feeds}/?$", "index.php?post_type={$post_type}".'&feed=$matches[1]', 'top');
+			add_rewrite_rule("{$archive_slug}/{$wp_rewrite->pagination_base}/([0-9]{1,})/?$", "index.php?post_type={$post_type}".'&paged=$matches[1]', 'top');
+	}
+	return $args;
+}, 10, 2);
